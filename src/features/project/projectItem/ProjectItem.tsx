@@ -8,7 +8,11 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
   const { t } = useTranslation();
 
   const onDelete = () => {
-    if (window.confirm(t(texts.projectItem.deleteProject))) {
+    if (
+      window.confirm(
+        t(texts.projectItem.deleteProject, { title: props.project.title })
+      )
+    ) {
       props.onDelete?.(props.project);
     }
   };

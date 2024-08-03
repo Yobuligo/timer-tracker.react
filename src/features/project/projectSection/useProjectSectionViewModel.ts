@@ -17,5 +17,15 @@ export const useProjectSectionViewModel = () => {
     });
   };
 
-  return { onAdd, projects };
+  const onDelete = (project: IProject) => {
+    setProjects((previous) => {
+      const index = previous.findIndex((item) => item.id === project.id);
+      if (index !== -1) {
+        previous.splice(index, 1);
+      }
+      return [...previous];
+    });
+  };
+
+  return { onAdd, onDelete, projects };
 };

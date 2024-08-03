@@ -4,7 +4,7 @@ import styles from "./ProjectList.module.scss";
 
 export const ProjectList: React.FC<IProjectListProps> = (props) => {
   const items = props.projects.map((project) => (
-    <ProjectItem key={project.id} project={project} />
+    <ProjectItem key={project.id} onDelete={props.onDelete} project={project} />
   ));
 
   return <div className={styles.projectList}>{items}</div>;

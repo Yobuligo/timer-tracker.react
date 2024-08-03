@@ -3,7 +3,13 @@
 .projectItem {
   cursor: pointer;
   background-color: $color-secondary-lighter;
-    padding: 1rem;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .title {

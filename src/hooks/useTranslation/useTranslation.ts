@@ -1,4 +1,4 @@
-import * as translations from "./i18n";
+import * as translations from "../../i18n";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { texts } from "./texts";
 import { ITranslation } from "./types/ITranslation";

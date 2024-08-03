@@ -1,4 +1,4 @@
-import * as translations from "./i18n";
+import * as translations from "../../i18n";
 
 /**
  * This function is responsible for setting the path for each text instead of having the text itself.

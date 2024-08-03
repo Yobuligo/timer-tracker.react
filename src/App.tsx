@@ -1,3 +1,5 @@
+import { DashboardPage } from "./pages/DashboardPage";
+
 export const App: React.FC = () => {
-  return <>Hello World</>;
+  return <DashboardPage />;
 };

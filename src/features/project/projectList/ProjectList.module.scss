@@ -1,0 +1,7 @@
+@import "../../../styles/dimensions.scss";
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  row-gap: $negative-space;
+}

@@ -1,6 +1,0 @@
-{
-    "sayHello": "hallo '{{name}}'",
-    "homePage": {
-        "header": "Willkommen"
-    }
-}

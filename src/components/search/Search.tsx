@@ -26,7 +26,7 @@ export const Search: React.FC<ISearchProps> = (props) => {
         className={styles.input}
         onChange={onChange}
         onKeyDown={onEnter}
-        placeholder={t(texts.search)}
+        placeholder={t(texts.general.search)}
         type="text"
         value={query}
       />

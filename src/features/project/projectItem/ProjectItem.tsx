@@ -1,9 +1,17 @@
+import { texts } from "../../../hooks/useTranslation/texts";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 import { DeleteIcon } from "../../../icons/DeleteIcon";
 import { IProjectItemProps } from "./IProjectItemProps";
 import styles from "./ProjectItem.module.scss";
 
 export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
-  const onDelete = () => props.onDelete?.(props.project);
+  const { t } = useTranslation();
+
+  const onDelete = () => {
+    if (window.confirm(t(texts.projectItem.deleteProject))) {
+      props.onDelete?.(props.project);
+    }
+  };
 
   return (
     <div className={styles.projectItem}>

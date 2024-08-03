@@ -13,6 +13,7 @@ export const ProjectAdd: React.FC<IProjectAddProps> = (props) => {
   const onAdd = () => {
     if (title.length > 0) {
       props.onAdd?.(title);
+      setTitle("");
     }
   };
 

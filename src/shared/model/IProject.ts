@@ -1,7 +1,9 @@
 import { IHavePath } from "../../api/core/types/IHavePath";
 import { IEntity } from "../types/IEntity";
+import { ITask } from "./ITask";
 
 export interface IProject extends IEntity {
+  tasks: ITask[];
   title: string;
 }
 

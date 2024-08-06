@@ -11,6 +11,8 @@ export const ProjectSection: React.FC = () => {
       <ProjectAdd onAdd={viewModel.onAdd} />
       <ProjectList
         onDelete={viewModel.onDelete}
+        onStart={viewModel.onStart}
+        onStop={viewModel.onStop}
         projects={viewModel.projects}
       />
     </div>

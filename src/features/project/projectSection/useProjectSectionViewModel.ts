@@ -2,6 +2,7 @@ import { useState } from "react";
 import { uuid } from "../../../core/utils/uuid";
 import { ProjectInfo } from "../../../services/ProjectInfo";
 import { IProject } from "../../../shared/model/IProject";
+import { ITask } from "../../../shared/model/ITask";
 
 export const useProjectSectionViewModel = () => {
   const [projects, setProjects] = useState<IProject[]>([]);
@@ -29,17 +30,30 @@ export const useProjectSectionViewModel = () => {
     });
   };
 
-  const onStart = (project: IProject) =>
-    setProjects((previous) => {
-      const task = ProjectInfo.findRunningTask(project);
-      if (task) {
-        task.stoppedAt = new Date();
-      }
+  const onStart = (project: IProject) => {
+    // check if project is already running, if so, quit starting
+    if (ProjectInfo.hasRunningTask(project)) {
+      return;
+    }
 
+    // create new task and start
+    setProjects((previous) => {
+      const task: ITask = {
+        id: uuid(),
+        startedAt: new Date(),
+        title: "Development",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      project.tasks.push(task);
+
+      // update projects
       const index = previous.findIndex((item) => item.id === project.id);
       previous.splice(index, 1, project);
       return [...previous];
     });
+  };
 
   const onStop = (project: IProject) => {};
 

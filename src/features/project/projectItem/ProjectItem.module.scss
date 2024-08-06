@@ -1,7 +1,11 @@
 @import "../../../styles/colors.module.scss";
+@import "../../../styles/dimensions.scss";
 
 .projectItem {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
   background-color: $color-secondary-lighter;
   padding: 1rem;
 }

@@ -55,7 +55,18 @@ export const useProjectSectionViewModel = () => {
     });
   };
 
-  const onStop = (project: IProject) => {};
+  const onStop = (project: IProject) => {
+    const task = ProjectInfo.stopRunningTask(project);
+
+    // task was stopped. Updated project
+    if (task) {
+      setProjects((previous) => {
+        const index = previous.findIndex((item) => item.id === project.id);
+        previous.splice(index, 1, project);
+        return [...previous];
+      });
+    }
+  };
 
   return { onAdd, onDelete, onStart, onStop, projects };
 };

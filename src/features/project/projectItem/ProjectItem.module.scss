@@ -16,6 +16,12 @@
   justify-content: space-between;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: $negative-space;
+}
+
 .title {
   margin: 0;
   text-transform: uppercase;

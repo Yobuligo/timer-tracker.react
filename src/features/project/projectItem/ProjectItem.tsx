@@ -3,6 +3,7 @@ import { Toolbar } from "../../../components/toolbar/Toolbar";
 import { texts } from "../../../hooks/useTranslation/texts";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 import { DeleteIcon } from "../../../icons/DeleteIcon";
+import { StartIcon } from "../../../icons/StartIcon";
 import { ProjectInfo } from "../../../services/ProjectInfo";
 import { IProjectItemProps } from "./IProjectItemProps";
 import styles from "./ProjectItem.module.scss";
@@ -24,14 +25,19 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
 
   const onStart = () => props.onStart?.(props.project);
 
+  const isRunning = ProjectInfo.hasRunningTask(props.project);
+
   return (
     <div className={styles.projectItem}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{props.project.title}</h3>
+        <div className={styles.titleContainer}>
+          {isRunning && <StartIcon />}
+          <h3 className={styles.title}>{props.project.title}</h3>
+        </div>
         <DeleteIcon onClick={onDelete} />
       </div>
       <Toolbar className={styles.toolbar}>
-        {ProjectInfo.hasRunningTask(props.project) ? (
+        {isRunning ? (
           <Button className={styles.button} onClick={onStop}>
             {t(texts.projectItem.stop)}
           </Button>

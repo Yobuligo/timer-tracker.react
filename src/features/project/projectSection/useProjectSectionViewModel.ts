@@ -30,17 +30,6 @@ export const useProjectSectionViewModel = () => {
     });
   };
 
-  const printProjectTasks = (project: IProject) => {
-    console.log("Print Tasks");
-    project.tasks.forEach((task) => {
-      console.log(
-        `Task '${
-          task.title
-        }' was started At '${task.startedAt.toISOString()}' and stopped at '${task.stoppedAt?.toISOString()}'`
-      );
-    });
-  };
-
   const onStart = (project: IProject) => {
     // check if project is already running, if so, quit starting
     if (ProjectInfo.hasRunningTask(project)) {
@@ -62,8 +51,6 @@ export const useProjectSectionViewModel = () => {
       // update projects
       const index = previous.findIndex((item) => item.id === project.id);
       previous.splice(index, 1, project);
-
-      printProjectTasks(project)
       return [...previous];
     });
   };
@@ -76,8 +63,6 @@ export const useProjectSectionViewModel = () => {
       setProjects((previous) => {
         const index = previous.findIndex((item) => item.id === project.id);
         previous.splice(index, 1, project);
-
-        printProjectTasks(project)
         return [...previous];
       });
     }

@@ -1,5 +1,6 @@
 import { Button } from "../../../components/button/Button";
 import { Toolbar } from "../../../components/toolbar/Toolbar";
+import { Duration } from "../../../core/services/date/Duration";
 import { texts } from "../../../hooks/useTranslation/texts";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 import { DeleteIcon } from "../../../icons/DeleteIcon";
@@ -24,7 +25,7 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
       <Toolbar className={styles.toolbar}>
         <div>
           {viewModel.durationTotal && (
-            <>{`d:${viewModel.durationTotal.days} h:${viewModel.durationTotal.hours} m:${viewModel.durationTotal.minutes} s:${viewModel.durationTotal.seconds}`}</>
+            <>{Duration.format(viewModel.durationTotal)}</>
           )}
         </div>
         {viewModel.isRunning ? (
@@ -38,7 +39,7 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
         )}
         <div>
           {viewModel.isRunning && viewModel.duration && (
-            <>{`d:${viewModel.duration.days} h:${viewModel.duration.hours} m:${viewModel.duration.minutes} s:${viewModel.duration.seconds}`}</>
+            <>{Duration.format(viewModel.duration)}</>
           )}
         </div>
       </Toolbar>

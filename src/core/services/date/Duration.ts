@@ -46,6 +46,12 @@ export class Duration {
     return this._msecs!;
   }
 
+  static sum(...durations: Duration[]): Duration {
+    let ticks: number = 0;
+    durations.forEach((duration) => (ticks += duration.ticks));
+    return new Duration(ticks);
+  }
+
   private calculate() {
     this._days = Math.floor(this.ticks / this.msecInDays);
     this._hours = Math.floor((this.ticks % this.msecInDays) / this.msecInHours);

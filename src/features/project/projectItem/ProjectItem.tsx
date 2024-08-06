@@ -10,6 +10,7 @@ import { StartIcon } from "../../../icons/StartIcon";
 import { ProjectInfo } from "../../../services/ProjectInfo";
 import { IProjectItemProps } from "./IProjectItemProps";
 import styles from "./ProjectItem.module.scss";
+import { TaskInfo } from "../../../services/TaskInfo";
 
 export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
   const [duration, setDuration] = useState<Duration | undefined>(undefined);
@@ -39,20 +40,11 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
 
   const calcDuration = useCallback(() => {
     const task = ProjectInfo.findRunningTask(props.project);
-    let duration: Duration | undefined = undefined;
     if (task) {
-      if (task.stoppedAt) {
-        duration = DateTime.subtract(task.startedAt, task.stoppedAt);
-        setDuration(duration);
-      } else {
-        duration = DateTime.subtract(task.startedAt, new Date());
-        setDuration(duration);
-      }
+      setDuration(TaskInfo.toDuration(task));
     } else {
-      duration = undefined;
       setDuration(undefined);
     }
-    return duration;
   }, [props.project]);
 
   const startTimer = useCallback(() => {
@@ -83,6 +75,11 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
         <DeleteIcon onClick={onDelete} />
       </div>
       <Toolbar className={styles.toolbar}>
+        <div>
+          {isRunning && duration && (
+            <>{`d:${duration.days} h:${duration.hours} m:${duration.minutes} s:${duration.seconds}`}</>
+          )}
+        </div>
         {isRunning ? (
           <Button className={styles.button} onClick={onStop}>
             {t(texts.projectItem.stop)}
@@ -93,10 +90,8 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
           </Button>
         )}
         <div>
-          {isRunning && (
-            <>
-              {`${duration?.hours}:${duration?.minutes}:${duration?.seconds}`}
-            </>
+          {isRunning && duration && (
+            <>{`d:${duration.days} h:${duration.hours} m:${duration.minutes} s:${duration.seconds}`}</>
           )}
         </div>
       </Toolbar>

@@ -1,5 +1,7 @@
+import { Duration } from "../core/services/date/Duration";
 import { IProject } from "../shared/model/IProject";
 import { ITask } from "../shared/model/ITask";
+import { TaskInfo } from "./TaskInfo";
 
 export class ProjectInfo {
   /**
@@ -33,5 +35,13 @@ export class ProjectInfo {
 
     runningTask.stoppedAt = new Date();
     return runningTask;
+  }
+
+  /**
+   * Returns a duration, which contains the duration of each task of the project
+   */
+  static toDurationTotal(project: IProject): Duration {
+    const durations = project.tasks.map((task) => TaskInfo.toDuration(task));
+    return Duration.sum(...durations);
   }
 }

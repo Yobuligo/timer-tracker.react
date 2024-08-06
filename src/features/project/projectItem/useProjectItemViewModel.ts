@@ -11,6 +11,11 @@ export const useProjectItemViewModel = (props: IProjectItemProps) => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutId);
+  }, [timeoutId]);
+
   const { t } = useTranslation();
 
   const onDelete = () => {

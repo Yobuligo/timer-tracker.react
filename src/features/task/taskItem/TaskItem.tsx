@@ -10,10 +10,10 @@ export const TaskItem: React.FC<ITaskItemProps> = (props) => {
   return (
     <div className={styles.taskItem}>
       <div>{props.task.title}</div>
-      <div>{DateTime.formatDate(props.task.startedAt)}</div>
+      <div>{DateTime.format(props.task.startedAt)}</div>
       <div>
         {props.task.stoppedAt
-          ? DateTime.formatDate(props.task.stoppedAt)
+          ? DateTime.format(props.task.stoppedAt)
           : t(texts.taskItem.running)}
       </div>
     </div>

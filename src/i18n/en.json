@@ -12,6 +12,7 @@
         "stop": "Stop"
     },
     "taskItem": {
+        "deleteQuestion": "Would you like to delete task '{{title}}'?",
         "running": "running"
     }
 }

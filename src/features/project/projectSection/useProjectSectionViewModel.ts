@@ -75,9 +75,22 @@ export const useProjectSectionViewModel = () => {
     }
   };
 
+  const onDeleteTask = (project: IProject, task: ITask) => {
+    setProjects((previous) => {
+      let index = project.tasks.findIndex((item) => item.id === task.id);
+      if (index !== -1) {
+        project.tasks.splice(index, 1);
+      }
+      index = previous.findIndex((item) => item.id === project.id);
+      previous.splice(index, 1, project);
+      return [...previous];
+    });
+  };
+
   return {
     onAdd,
     onDelete,
+    onDeleteTask,
     onProjectSelected,
     onProjectUnselected,
     onStart,

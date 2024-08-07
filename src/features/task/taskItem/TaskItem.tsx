@@ -8,7 +8,15 @@ import styles from "./TaskItem.module.scss";
 export const TaskItem: React.FC<ITaskItemProps> = (props) => {
   const { t } = useTranslation();
 
-  const onDelete = () => props.onDelete?.(props.task);
+  const onDelete = () => {
+    if (
+      window.confirm(
+        t(texts.taskItem.deleteQuestion, { title: props.task.title })
+      )
+    ) {
+      props.onDelete?.(props.task);
+    }
+  };
 
   return (
     <div className={styles.taskItem}>

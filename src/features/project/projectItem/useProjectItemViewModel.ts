@@ -58,11 +58,12 @@ export const useProjectItemViewModel = (props: IProjectItemProps) => {
 
   useEffect(() => {
     if (isRunning) {
+      calcDuration();
       startTimer();
     } else {
       setDuration(undefined);
     }
-  }, [isRunning, startTimer]);
+  }, [calcDuration, isRunning, startTimer]);
 
   const durationTotal = ProjectInfo.toDurationTotal(props.project);
 

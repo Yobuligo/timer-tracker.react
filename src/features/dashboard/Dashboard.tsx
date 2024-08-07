@@ -15,7 +15,10 @@ export const Dashboard: React.FC = () => {
   return (
     <>
       {selectedProject ? (
-        <ProjectDetails onBack={onProjectUnselected} />
+        <ProjectDetails
+          onBack={onProjectUnselected}
+          project={selectedProject}
+        />
       ) : (
         <ProjectSection onClick={onProjectSelected} />
       )}

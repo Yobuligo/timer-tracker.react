@@ -1,17 +1,24 @@
 import { useState } from "react";
-import { ProjectSection } from "../project/projectSection/ProjectSection";
 import { IProject } from "../../shared/model/IProject";
+import { ProjectDetails } from "../project/projectDetails/ProjectDetails";
+import { ProjectSection } from "../project/projectSection/ProjectSection";
 
 export const Dashboard: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<IProject | undefined>(
     undefined
   );
 
-  const onClick = (project: IProject) => setSelectedProject(project);
+  const onProjectSelected = (project: IProject) => setSelectedProject(project);
+
+  const onProjectUnselected = () => setSelectedProject(undefined);
 
   return (
     <>
-      <ProjectSection onClick={onClick} />
+      {selectedProject ? (
+        <ProjectDetails onBack={onProjectUnselected} />
+      ) : (
+        <ProjectSection onClick={onProjectSelected} />
+      )}
     </>
   );
 };

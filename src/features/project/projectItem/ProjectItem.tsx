@@ -1,10 +1,10 @@
 import { Button } from "../../../components/button/Button";
 import { Toolbar } from "../../../components/toolbar/Toolbar";
 import { Duration } from "../../../core/services/date/Duration";
-import { texts } from "../../../hooks/useTranslation/texts";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 import { DeleteIcon } from "../../../icons/DeleteIcon";
 import { StartIcon } from "../../../icons/StartIcon";
+import { StopIcon } from "../../../icons/StopIcon";
 import { IProjectItemProps } from "./IProjectItemProps";
 import styles from "./ProjectItem.module.scss";
 import { useProjectItemViewModel } from "./useProjectItemViewModel";
@@ -20,7 +20,9 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
           {viewModel.isRunning && <StartIcon />}
           <h3 className={styles.title}>{props.project.title}</h3>
         </div>
-        <DeleteIcon onClick={viewModel.onDelete} />
+        <Button onClick={viewModel.onDelete}>
+          <DeleteIcon className={styles.icon} />
+        </Button>
       </div>
       <Toolbar className={styles.toolbar}>
         <div>
@@ -30,11 +32,11 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
         </div>
         {viewModel.isRunning ? (
           <Button className={styles.button} onClick={viewModel.onStop}>
-            {t(texts.projectItem.stop)}
+            <StopIcon className={styles.icon} />
           </Button>
         ) : (
           <Button className={styles.button} onClick={viewModel.onStart}>
-            {t(texts.projectItem.start)}
+            <StartIcon className={styles.icon} />
           </Button>
         )}
         <div>

@@ -1,4 +1,5 @@
 import { Button } from "../../../components/button/Button";
+import { Card } from "../../../components/card/Card";
 import { Toolbar } from "../../../components/toolbar/Toolbar";
 import { Duration } from "../../../core/services/date/Duration";
 import { texts } from "../../../hooks/useTranslation/texts";
@@ -14,7 +15,7 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.projectItem}>
+    <Card className={styles.projectItem}>
       <div className={styles.header}>
         <div className={styles.titleContainer} onClick={viewModel.onClick}>
           {viewModel.isRunning && <StartIcon />}
@@ -45,6 +46,6 @@ export const ProjectItem: React.FC<IProjectItemProps> = (props) => {
           )}
         </div>
       </Toolbar>
-    </div>
+    </Card>
   );
 };

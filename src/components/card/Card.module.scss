@@ -3,6 +3,7 @@
 
 .card {
   border: 1px solid $color-disabled;
-  border-radius: 8px;
   padding: $negative-space;
+  background-color: $color-secondary-lighter;
+  padding: 1rem;
 }

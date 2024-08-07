@@ -1,3 +1,4 @@
+import { Card } from "../../../components/card/Card";
 import { DateTime } from "../../../core/services/date/DateTime";
 import { texts } from "../../../hooks/useTranslation/texts";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
@@ -19,7 +20,7 @@ export const TaskItem: React.FC<ITaskItemProps> = (props) => {
   };
 
   return (
-    <div className={styles.taskItem}>
+    <Card className={styles.taskItem}>
       <div>{props.task.title}</div>
       <div>{DateTime.format(props.task.startedAt)}</div>
       <div>
@@ -28,6 +29,6 @@ export const TaskItem: React.FC<ITaskItemProps> = (props) => {
           : t(texts.taskItem.running)}
       </div>
       <DeleteIcon onClick={onDelete} />
-    </div>
+    </Card>
   );
 };

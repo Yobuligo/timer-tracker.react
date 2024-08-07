@@ -28,6 +28,8 @@ export const useProjectItemViewModel = (props: IProjectItemProps) => {
     }
   };
 
+  const onClick = () => props.onClick?.(props.project);
+
   const onStop = () => {
     props.onStop?.(props.project);
     stopTimer();
@@ -67,5 +69,13 @@ export const useProjectItemViewModel = (props: IProjectItemProps) => {
 
   const durationTotal = ProjectInfo.toDurationTotal(props.project);
 
-  return { duration, durationTotal, isRunning, onDelete, onStart, onStop };
+  return {
+    duration,
+    durationTotal,
+    isRunning,
+    onDelete,
+    onClick,
+    onStart,
+    onStop,
+  };
 };

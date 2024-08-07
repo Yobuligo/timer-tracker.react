@@ -1,7 +1,9 @@
 @import "../../../styles/dimensions.scss";
+@import "../../../styles/colors.module.scss";
 
 .taskItem {
   display: flex;
   flex-direction: row;
   column-gap: 2rem;
+  background-color: $color-secondary-lighter;
 }

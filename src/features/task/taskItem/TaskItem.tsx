@@ -1,11 +1,14 @@
 import { DateTime } from "../../../core/services/date/DateTime";
 import { texts } from "../../../hooks/useTranslation/texts";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { DeleteIcon } from "../../../icons/DeleteIcon";
 import { ITaskItemProps } from "./ITaskItemProps";
 import styles from "./TaskItem.module.scss";
 
 export const TaskItem: React.FC<ITaskItemProps> = (props) => {
   const { t } = useTranslation();
+
+  const onDelete = () => props.onDelete?.(props.task);
 
   return (
     <div className={styles.taskItem}>
@@ -16,6 +19,7 @@ export const TaskItem: React.FC<ITaskItemProps> = (props) => {
           ? DateTime.format(props.task.stoppedAt)
           : t(texts.taskItem.running)}
       </div>
+      <DeleteIcon onClick={onDelete} />
     </div>
   );
 };

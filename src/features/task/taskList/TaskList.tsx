@@ -7,7 +7,7 @@ export const TaskList: React.FC<ITaskListProps> = (props) => {
   const viewModel = useTaskListViewModel(props);
 
   const items = viewModel.tasks.map((task) => (
-    <TaskItem key={task.id} task={task} />
+    <TaskItem key={task.id} onDelete={props.onDelete} task={task} />
   ));
 
   return <div className={styles.taskList}>{items}</div>;

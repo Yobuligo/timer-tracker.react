@@ -5,7 +5,7 @@ import styles from "./TaskSection.module.scss";
 export const TaskSection: React.FC<ITaskSectionProps> = (props) => {
   return (
     <div className={styles.taskSection}>
-      <TaskList tasks={props.tasks} />
+      <TaskList onDelete={props.onDelete} tasks={props.tasks} />
     </div>
   );
 };

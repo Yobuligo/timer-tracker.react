@@ -6,6 +6,9 @@ import { ITask } from "../../../shared/model/ITask";
 
 export const useProjectSectionViewModel = () => {
   const [projects, setProjects] = useState<IProject[]>([]);
+  const [selectedProject, setSelectedProject] = useState<IProject | undefined>(
+    undefined
+  );
 
   const onAdd = (title: string) => {
     setProjects((previous) => {
@@ -29,6 +32,10 @@ export const useProjectSectionViewModel = () => {
       return [...previous];
     });
   };
+
+  const onProjectSelected = (project: IProject) => setSelectedProject(project);
+
+  const onProjectUnselected = () => setSelectedProject(undefined);
 
   const onStart = (project: IProject) => {
     // check if project is already running, if so, quit starting
@@ -68,5 +75,14 @@ export const useProjectSectionViewModel = () => {
     }
   };
 
-  return { onAdd, onDelete, onStart, onStop, projects };
+  return {
+    onAdd,
+    onDelete,
+    onProjectSelected,
+    onProjectUnselected,
+    onStart,
+    onStop,
+    projects,
+    selectedProject,
+  };
 };
